@@ -1,0 +1,22 @@
+{
+    "ciudades": [
+        {
+            "nombre": "San Sebastián",
+            "grados": "15",
+            "humedad": "43",
+            "localizacion": [43.34, -1.98]
+        },
+        {
+            "nombre": "Bilbao",
+            "grados": "15",
+            "humedad": "43",
+            "localizacion": [43.2655, -2.9354]
+        },
+        {
+            "nombre": "Vitoria Gasteiz",
+            "grados": "15",
+            "humedad": "43",
+            "localizacion": [42.8463, -2.6738]
+        }
+    ]
+}

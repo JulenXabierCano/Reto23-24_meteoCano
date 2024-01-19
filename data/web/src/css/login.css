@@ -1,0 +1,22 @@
+.loginForm {
+    position: relative;
+    border: solid 1px black;
+    align-items: center;
+    text-align: center;
+    height: 300px;
+    margin: auto;
+    margin-top: 100px;
+    width: 200px;
+}
+
+.left {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+}
+
+.rigth {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}

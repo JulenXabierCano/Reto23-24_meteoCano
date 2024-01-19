@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  apache:
+    image: httpd:latest
+    container_name: Apache
+    ports:
+      - "8081:80"
+    volumes:
+      - './data/web/:/usr/local/apache2/htdocs/'
+
+  laravel_api:
+    image: docker.io/bitnami/laravel:10
+    container_name: Laravel_API
+    ports:
+      - '8082:8000'
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - DB_DATABASE=MeteoCano
+    volumes:
+      - './laravel_api:/app'
+
+  laravel_data_managment:
+    image: docker.io/bitnami/laravel:10
+    container_name: Laraver_Data_Managment
+    ports:
+      - '8083:8000'
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - DB_DATABASE=MeteoCano
+    volumes:
+      - './laravel_data_managment:/app'
+
+  nginx:
+    image: nginx:latest
+    container_name: NGINX
+    ports:
+      - "8084:80"
+    links:
+      - apache
+      - laravel_api
+    volumes:
+      - './data/nginx/nginx.conf:/etc/nginx/nginx.conf'
+
+  mysql:
+    image: mysql:latest
+    container_name: MySql
+    environment:
+      MYSQL_DATABASE: 'MeteoCano'
+      MYSQL_USER: 'julen'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - './my-db:/var/lib/mysql'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - mysql
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8085:80

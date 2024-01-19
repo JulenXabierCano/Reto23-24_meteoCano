@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Script - Leaflet 1.7.1 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+    <!-- Script - Jquery 3.7.1 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Script - Carga de ciudades -->
+    <script src="./src/js/ciudades.js"></script>
+
+    <!-- Script - Gestion mapa -->
+    <script src="./src/js/mapa.js"></script>
+
+    <!-- Script - Gestion login -->
+    <script src="./src/js/login.js"></script>
+
+    <!-- Estilos - Leaflet 1.7.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+
+    <!-- Estilos - Local -->
+    <link rel="stylesheet" href="./src/css/styles.css">
+    <link rel="stylesheet" href="./src/css/login.css">
+
+    <!-- Script - Local -->
+    <script src="./src/js/javaScript.js"></script>
+</head>
+
+<body id="body">
+    <header>
+        <h1 id="titulo">MeteoCano</h1>
+        <nav>
+            <button onclick="pantallaAjustes()">Ajustes</button>
+            <button class="login" onclick="crearLogin()">Login</button>
+        </nav>
+    </header>
+    <hr>
+
+    <div id="container">
+        <div id="mapa"></div>
+
+        <div id="ciudades"></div>
+        <script>
+            crearMapa()
+            if (localStorage.getItem("ciudades")) {
+                cargarCiudades()
+            } else
+                document.getElementById("ciudades").innerHTML = "No se han guardado ciudades aún"
+        </script>
+    </div>
+</body>
+
+</html>
