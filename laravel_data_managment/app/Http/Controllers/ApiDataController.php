@@ -49,4 +49,14 @@ class ApiDataController
         return redirect("http://localhost:8084");
     }
 
+
+    public function aleatorizadorTemperatura()
+    {
+        $temperaturas = explode(";", Ciudad::all("temperaturas"));
+
+        foreach ($temperaturas as $temperatura) {
+            
+        }
+    }
+
 }

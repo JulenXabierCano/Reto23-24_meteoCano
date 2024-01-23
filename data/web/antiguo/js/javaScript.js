@@ -4,12 +4,20 @@ $("document").ready(
 
 
 function crearPantallaMain() {
-    document.getElementById("body").innerHTML = `
+    htmlBuilder = `
     <header>
         <h1 id="titulo">MeteoCano</h1>
         <nav>
             <button onclick="pantallaAjustes()">Ajustes</button>
-            <button class="login" onclick="crearLogin()">Login</button>
+    `
+
+    if (!sessionStorage.getItem("token")) {
+        htmlBuilder += `<button class="login" onclick="crearLogin()">Login</button>`
+    } else {
+        htmlBuilder += `<button class="logout" onclick="logout()">${sessionStorage.getItem("token").split(";")[1]}</button>`
+    }
+
+    htmlBuilder += `
         </nav>
     </header>
     <hr>

@@ -1,8 +1,8 @@
 function crearLogin() {
     document.getElementById("body").innerHTML = (`
-    <div class="loginForm">
+    <div class="loginForm" id="formulario">
         <h1>Inicia Sesión</h1>
-        <form action="event.preventDefault(); login(email.value,password.value)" method="POST">
+        <form onsubmit="event.preventDefault(); login(email.value,password.value)" id="form">
             <input type="text" placeholder="Email" name="email" required id="email">
             <br><br>
             <input type="password" placeholder="Contraseña" name="password" id="password" required>
@@ -16,7 +16,7 @@ function crearLogin() {
 
 function crearRegister() {
     document.getElementById("body").innerHTML = (`
-    <div class="loginForm">
+    <div class="loginForm" id="formulario">
         <h1>Registrarse</h1>
         <form onsubmit="event.preventDefault(); registrarse(name.value,email.value,password.value,c_password.value);" id="form">
             <input type="text" placeholder="Nombre" name="name" required>
@@ -35,7 +35,7 @@ function crearRegister() {
 }
 
 async function registrarse(name, email, password, c_password) {
-    document.getElementById("form").innerHTML = `
+    document.getElementById("loginForm").innerHTML = `
         <h4>Gracias ${name}, por elegirnos, espera mientras completamos tu registro</h4>
         <img src="https://calcapi.printgrid.io/file/loading-spinner.gif" alt="" id="iconoCarga">
     `
@@ -55,7 +55,7 @@ async function registrarse(name, email, password, c_password) {
 }
 
 async function login(email, password) {
-    document.getElementById("form").innerHTML = `
+    document.getElementById("loginForm").innerHTML = `
         <h4>Gracias ${name}, por elegirnos, espera mientras completamos tu registro</h4>
         <img src="https://calcapi.printgrid.io/file/loading-spinner.gif" alt="" id="iconoCarga">
     `
@@ -74,7 +74,8 @@ async function login(email, password) {
             return data.json()
         })
         .then((data) => {
-            sessionStorage.setItem("token", data["token"] + "" + data[""])
+            sessionStorage.setItem("token", data["token"] + ";" + data["name"])
         })
+
     crearPantallaMain()
 }

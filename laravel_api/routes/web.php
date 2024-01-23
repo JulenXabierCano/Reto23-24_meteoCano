@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\DataControllers;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +16,6 @@ use App\Http\Controllers\DataControllers;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/recuperarDatos',[DataController::class,"requestData"]);
 
 Route::group([
     'as' => 'passport.',
