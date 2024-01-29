@@ -23,12 +23,10 @@ use App\Models\Ciudad;
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
 
-Route::get('recuperarDatos', [DataController::class, "requestData"]);
-
 Route::get('getCiudades', function () {
     return json_decode(Ciudad::all());
 });
 
 Route::get('getCoordenadas', function () {
-    return json_decode(Ciudad::all('coordenadas'));
+    return json_decode(Ciudad::all('ciudad', 'coordenadas'));
 });

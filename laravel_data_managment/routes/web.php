@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/obtenerDatos', [ApiDataController::class, 'api_data']);
+
+Route::get('/pruebaDatos', [ApiDataController::class, 'random_temp']);

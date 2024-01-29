@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Historico extends Model
 {
     protected $table = 'Historico';
-    protected $primaryKey = 'ciudad';
-
-    protected $keyType = 'string';
 
     use HasFactory;
     /**

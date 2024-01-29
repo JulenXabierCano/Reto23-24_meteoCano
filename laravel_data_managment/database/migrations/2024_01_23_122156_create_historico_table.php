@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('historico', function (Blueprint $table) {
-            $table->string('ciudad')->primary();
+            $table->id();
+            $table->string('ciudad');
             $table->string('estadoDelCielo');
             $table->string('temperaturas');
             $table->integer('humedad');

@@ -12,7 +12,7 @@ function crearMapa() {
             coordenadas.forEach(coordenada => {
                 L.marker(coordenada.coordenadas.split(";"))
                     .addTo(map)
-                    .on("click", function () { añadir(ciudad.ciudad) })
+                    .on("click", function () { añadir(coordenada.ciudad) })
             });
         })
 }

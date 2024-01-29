@@ -13,6 +13,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call("App\Http\Controllers\ApiDataController@api_data")->everyFifteenMinutes();
+
+        $schedule->call("App\Http\Controllers\ApiDataController@random_temp")->everyFifteenSeconds();
+
+        $schedule->call("App\Http\Controllers\ApiDataController@dump_data")->dailyAt('10:33');
     }
 
     /**

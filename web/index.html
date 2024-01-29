@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+
+    <!-- javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./src/js/ajustes.js"></script>
+    <script src="./src/js/mapa.js"></script>
+</head>
+
+<body>
+    <h1>MeteoCano</h1>
+    <hr>
+    <div id="mapcontainer">
+        <h3>Seleccione una ciudad en el mapa:</h3>
+        <div id="mapa">
+            <img src="https://calcapi.printgrid.io/file/loading-spinner.gif">
+        </div>
+    </div>
+
+    <div id="ciudadesContainer">
+        <h3 id="tituloCiudades">
+            <script>
+                $("document").ready(() => {
+                    if (localStorage.getItem("ciudades")) {
+                        $("#tituloCiudades").text("Ciudades seleccionadas:")
+                    } else {
+                        $("#tituloCiudades").text("Aún no se han seleccionado ciudades")
+                    }
+                })
+            </script>
+        </h3>
+        <div id="ciudades"></div>
+        <hr>
+        <div id="ajustes">
+            <div>
+                <h3>Datos disponibles:</h3>
+                <div id="ajustesDisponibles">
+                    <img class="icon" alt="Icono Temperatura" id="iconoTemperatura"
+                        src="https://icons.iconarchive.com/icons/iconsmind/outline/256/Temperature-2-icon.png">
+
+                    <img class="icon" alt="Icono viento" id="iconoViento"
+                        src="https://static-00.iconduck.com/assets.00/wind-icon-1024x786-if02kqiw.png">
+                        
+                    <img class="icon" alt="Icono Precipitaciones" id="iconoPrecipitaciones"
+                        src="https://static-00.iconduck.com/assets.00/rain-drizzle-icon-256x256-j08hdums.png">
+
+                    <img class="icon" alt="Icono humedad" id="iconoHumedad"
+                        src="https://cdn-icons-png.flaticon.com/256/727/727790.png">
+
+                </div>
+            </div>
+            <hr>
+            <div>
+                <h3>Datos aplicados:</h3>
+                <div id="ajustesAplicados"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        crearMapa()
+        cargarAjustes()
+    </script>
+    <script src="src/js/ciudades.js"></script>
+</body>
+
+</html>

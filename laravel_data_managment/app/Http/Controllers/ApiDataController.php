@@ -2,41 +2,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ciudad;
-use Illuminate\Support\Carbon;
+use App\Models\Historico;
 use Illuminate\Support\Facades\Log;
 
 class ApiDataController
 {
     public function api_data()
     {
-
         $coordenadasCiudades = json_decode(Ciudad::all("ciudad", "coordenadas"), true);
-
-        log::info("Se han obtenido las coordenadas y las ciudades:");
-        log::info($coordenadasCiudades);
-
         foreach ($coordenadasCiudades as $coordenadas) {
             $latLon = explode(";", $coordenadas['coordenadas']);
-
-            log::info("Coordenadas actuales:");
-            log::info($latLon);
-
             $apiCall = 'https://api.openweathermap.org/data/2.5/onecall?units=metric&appid=ee7c4b79648c7ec65f4c16b0b11a0ffe&lang=es&lat=' . $latLon[0] . '&lon=' . $latLon[1];
-
             // Realiza la solicitud a la API
             $response = json_decode(@file_get_contents($apiCall), true);
-
-            log::info("Respuesta del API:");
-            log::info($response["current"]);
-            // return $response;
-            // return $coordenadasCiudades;
             $ciudad = Ciudad::find($coordenadas["ciudad"]);
-
-            log::info("Se ha intentado obtener la ciudad " . $coordenadas["ciudad"] . ":");
-            log::info($ciudad->ciudad);
-
             if ($ciudad) {
-                $time = new Carbon();
                 $ciudad->update([
                     "estadoDelCielo" => $response["current"]["weather"][0]["description"],
                     "temperaturas" => $response["current"]["temp"] . ";" . $response["current"]["feels_like"],
@@ -46,17 +26,43 @@ class ApiDataController
                 ]);
             }
         }
-        return redirect("http://localhost:8084");
+        log::info("Se ha ejecutado correctamente la obtención de datos del api");
     }
 
 
-    public function aleatorizadorTemperatura()
+    public function random_temp()
     {
-        $temperaturas = explode(";", Ciudad::all("temperaturas"));
+        $ciudades = Ciudad::all();
 
-        foreach ($temperaturas as $temperatura) {
-            
+        foreach ($ciudades as $ciudad) {
+            $temperatura = explode(";", $ciudad["temperaturas"])[0];
+            $sensTermica = explode(";", $ciudad["temperaturas"])[1];
+            $temperatura = $temperatura + rand(-100, 100) / 100;
+            $ciudad->update([
+                "temperaturas" => $temperatura . ";" . $sensTermica
+            ]);
         }
+
+        log::info("Se ha ejecutado correctamente la aleatorización de datos");
     }
 
+
+    public function dump_data()
+    {
+        $ciudades = Ciudad::all();
+        foreach ($ciudades as $ciudad) {
+            $historico = new Historico();
+
+            $historico["ciudad"] = $ciudad["ciudad"];
+            $historico["estadoDelCielo"] = $ciudad["estadoDelCielo"];
+            $historico["temperaturas"] = $ciudad["temperaturas"];
+            $historico["humedad"] = $ciudad["humedad"];
+            $historico["viento"] = $ciudad["viento"];
+            $historico["lluvia"] = $ciudad["lluvia"];
+
+            $historico->save();
+        }
+
+        log::info("se ha dumpeado correctamente la información al historico");
+    }
 }

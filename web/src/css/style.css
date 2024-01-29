@@ -1,0 +1,62 @@
+* {
+    vertical-align: top;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#mapcontainer {
+    display: inline-block;
+    text-align: center;
+    max-width: 500px;
+    padding: 10px;
+    width: 95%;
+}
+
+#mapa {
+    max-width: 500px;
+    height: 500px;
+    width: 100%;
+}
+
+#ciudadesContainer {
+    display: inline-block;
+    padding: 10px;
+}
+
+#ajustesAplicados,
+#ajustesDisponibles {
+    height: 25px;
+}
+
+
+.ciudad {
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    width: 100px;
+    margin: 5px;
+}
+
+.ciudad .brujula {
+    background-image: url(https://i.pinimg.com/originals/81/b6/e0/81b6e009f782d02cab6ed44ae8664f4b.png);
+    background-size: cover;
+    width: 100px;
+    padding: 20px 0px;
+}
+
+.ciudad .flecha {
+    filter: hue-rotate(200deg);
+    height: 60px;
+}
+
+.icon {
+    width: 25px;
+}
