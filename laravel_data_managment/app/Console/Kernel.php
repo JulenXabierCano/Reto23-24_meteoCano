@@ -16,7 +16,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->call("App\Http\Controllers\ApiDataController@random_temp")->everyFifteenSeconds();
 
-        $schedule->call("App\Http\Controllers\ApiDataController@dump_data")->dailyAt('10:33');
+        $schedule->call("App\Http\Controllers\ApiDataController@dump_data")->everyThreeHours();
+
+        // $schedule->call("App\Http\Controllers\ApiDataController@test_function")->everyTwoSeconds();
     }
 
     /**

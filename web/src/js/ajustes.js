@@ -59,7 +59,12 @@ function quitarAjustes(ajuste) {
             ajustes = ajustes.replace(ajuste, ""); break
     }
 
-    localStorage.setItem("ajustes", ajustes)
+    if (ajustes != "") {
+        localStorage.setItem("ajustes", ajustes)
+    } else {
+        localStorage.setItem("ajustes", ajustes)
+        alert("No se pueden quitar todos los datos, se reiniciarán los ajustes")
+    }
 }
 
 function cargarAjustes() {

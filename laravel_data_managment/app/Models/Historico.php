@@ -22,5 +22,6 @@ class Historico extends Model
         'humedad',
         'viento',
         'lluvia',
+        'fechaHistorico',
     ];
 }

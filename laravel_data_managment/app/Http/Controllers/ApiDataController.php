@@ -5,6 +5,8 @@ use App\Models\Ciudad;
 use App\Models\Historico;
 use Illuminate\Support\Facades\Log;
 
+use DateTime;
+
 class ApiDataController
 {
     public function api_data()
@@ -44,6 +46,7 @@ class ApiDataController
         }
 
         log::info("Se ha ejecutado correctamente la aleatorización de datos");
+
     }
 
 
@@ -65,4 +68,11 @@ class ApiDataController
 
         log::info("se ha dumpeado correctamente la información al historico");
     }
+
+    // public function test_function()
+    // {
+    //     $tiempo = new DateTime('2023-01-01 03:00:00');
+    //     $tiempo = $tiempo->modify("+3 hours");
+    //     log::info($tiempo->format('Y-m-d H:i:s'));
+    // }
 }

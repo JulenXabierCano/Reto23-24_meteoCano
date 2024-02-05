@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('humedad');
             $table->string('viento');
             $table->integer('lluvia');
+            $table->timestamp('fechaHistorico');
             $table->timestamps();
         });
     }

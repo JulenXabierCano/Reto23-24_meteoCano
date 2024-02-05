@@ -1,5 +1,6 @@
 <?php
 
+use Database\Factories\HistoricoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiDataController;
 
@@ -17,7 +18,3 @@ use App\Http\Controllers\ApiDataController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/obtenerDatos', [ApiDataController::class, 'api_data']);
-
-Route::get('/pruebaDatos', [ApiDataController::class, 'random_temp']);

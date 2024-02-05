@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="./src/css/style.css">
 
     <!-- javascript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="./src/js/grafico.js"></script>
     <script src="./src/js/ajustes.js"></script>
     <script src="./src/js/mapa.js"></script>
 </head>
@@ -27,7 +29,7 @@
             <img src="https://calcapi.printgrid.io/file/loading-spinner.gif">
         </div>
     </div>
-
+    <hr class="columna">
     <div id="ciudadesContainer">
         <h3 id="tituloCiudades">
             <script>
@@ -42,34 +44,47 @@
         </h3>
         <div id="ciudades"></div>
         <hr>
-        <div id="ajustes">
-            <div>
-                <h3>Datos disponibles:</h3>
-                <div id="ajustesDisponibles">
-                    <img class="icon" alt="Icono Temperatura" id="iconoTemperatura"
-                        src="https://icons.iconarchive.com/icons/iconsmind/outline/256/Temperature-2-icon.png">
 
-                    <img class="icon" alt="Icono viento" id="iconoViento"
-                        src="https://static-00.iconduck.com/assets.00/wind-icon-1024x786-if02kqiw.png">
-                        
-                    <img class="icon" alt="Icono Precipitaciones" id="iconoPrecipitaciones"
-                        src="https://static-00.iconduck.com/assets.00/rain-drizzle-icon-256x256-j08hdums.png">
+    </div>
 
-                    <img class="icon" alt="Icono humedad" id="iconoHumedad"
-                        src="https://cdn-icons-png.flaticon.com/256/727/727790.png">
+    <br>
 
-                </div>
+    <div id="contenedorGrafico">
+        <canvas id="grafico"></canvas>
+    </div>
+
+    <hr style="height: 200px; width: 1px; display: inline-block; background-color: black;">
+
+    <div id="ajustes">
+        <div>
+            <h3>Datos disponibles:</h3>
+            <div id="ajustesDisponibles">
+                <img class="icon" alt="Icono Temperatura" id="iconoTemperatura"
+                    src="https://icons.iconarchive.com/icons/iconsmind/outline/256/Temperature-2-icon.png">
+
+                <img class="icon" alt="Icono viento" id="iconoViento"
+                    src="https://static-00.iconduck.com/assets.00/wind-icon-1024x786-if02kqiw.png">
+
+                <img class="icon" alt="Icono Precipitaciones" id="iconoPrecipitaciones"
+                    src="https://static-00.iconduck.com/assets.00/rain-drizzle-icon-256x256-j08hdums.png">
+
+                <img class="icon" alt="Icono humedad" id="iconoHumedad"
+                    src="https://cdn-icons-png.flaticon.com/256/727/727790.png">
+
             </div>
-            <hr>
-            <div>
-                <h3>Datos aplicados:</h3>
-                <div id="ajustesAplicados"></div>
-            </div>
+        </div>
+        <hr>
+        <div>
+            <h3>Datos aplicados:</h3>
+            <div id="ajustesAplicados"></div>
         </div>
     </div>
 
+
+
     <script>
         crearMapa()
+        crearGrafico()
         cargarAjustes()
     </script>
     <script src="src/js/ciudades.js"></script>

@@ -7,7 +7,7 @@ setInterval(() => {
 }, 15 * 1000);
 
 function obtenerCiudades() {
-    fetch("http://localhost:8082/api/getCiudades")
+    fetch("http://10.10.17.145:8082/api/getCiudades")
         .then((data) => { return data.json() })
         .then((data) => {
             console.log(data)

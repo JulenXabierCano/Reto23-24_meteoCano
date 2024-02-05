@@ -3,6 +3,7 @@
 }
 
 body {
+    text-align: center;
     padding: 0px;
     margin: 0px;
 }
@@ -35,6 +36,19 @@ h1 {
     height: 25px;
 }
 
+#grafico {
+    width: 500px;
+}
+
+#contenedorGrafico {
+    max-width: 500px;
+    display: inline-block;
+}
+
+#ajustes {
+    display: inline-block;
+    width: 500px;
+}
 
 .ciudad {
     border: 1px solid black;
@@ -59,4 +73,17 @@ h1 {
 
 .icon {
     width: 25px;
+}
+
+.columna {
+    background-color: black;
+    display: inline-block;
+    height: 500px;
+    width: 1px;
+}
+
+@media screen and (max-width: 550px) {
+    .columna {
+        display: none;
+    }
 }
