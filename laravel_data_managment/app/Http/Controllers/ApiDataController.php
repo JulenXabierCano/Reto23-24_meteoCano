@@ -21,7 +21,7 @@ class ApiDataController
             if ($ciudad) {
                 $ciudad->update([
                     "estadoDelCielo" => $response["current"]["weather"][0]["description"],
-                    "temperaturas" => $response["current"]["temp"] . ";" . $response["current"]["feels_like"],
+                    "temperaturas" => $response["current"]["temp"],
                     "humedad" => $response["current"]["humidity"],
                     "viento" => $response["current"]["wind_speed"] . ";" . $response["current"]["wind_deg"],
                     "lluvia" => $response["minutely"][0]["precipitation"],
@@ -37,11 +37,10 @@ class ApiDataController
         $ciudades = Ciudad::all();
 
         foreach ($ciudades as $ciudad) {
-            $temperatura = explode(";", $ciudad["temperaturas"])[0];
-            $sensTermica = explode(";", $ciudad["temperaturas"])[1];
+            $temperatura = $ciudad["temperaturas"];
             $temperatura = $temperatura + rand(-100, 100) / 100;
             $ciudad->update([
-                "temperaturas" => $temperatura . ";" . $sensTermica
+                "temperaturas" => $temperatura
             ]);
         }
 

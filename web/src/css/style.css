@@ -1,22 +1,24 @@
 * {
     vertical-align: top;
+    margin: auto;
 }
 
 body {
     text-align: center;
-    padding: 0px;
+    width: 100%;
     margin: 0px;
 }
 
 h1 {
     text-align: center;
+    margin: 15px;
 }
 
 #mapcontainer {
     display: inline-block;
     text-align: center;
     max-width: 500px;
-    padding: 10px;
+    margin: auto;
     width: 95%;
 }
 
@@ -41,13 +43,13 @@ h1 {
 }
 
 #contenedorGrafico {
-    max-width: 500px;
     display: inline-block;
+    max-width: 500px;
+    padding: 10px;
 }
 
 #ajustes {
     display: inline-block;
-    width: 500px;
 }
 
 .ciudad {
@@ -73,17 +75,4 @@ h1 {
 
 .icon {
     width: 25px;
-}
-
-.columna {
-    background-color: black;
-    display: inline-block;
-    height: 500px;
-    width: 1px;
-}
-
-@media screen and (max-width: 550px) {
-    .columna {
-        display: none;
-    }
 }

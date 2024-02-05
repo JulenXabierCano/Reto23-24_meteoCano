@@ -33,18 +33,14 @@ function mostrarTiempoCiudad() {
         ciudades.forEach(ciudad => {
             if (localStorage.getItem("ciudades").includes(ciudad.ciudad)) {
                 htmlBuilder += `<div class="ciudad">
-                                    ${ciudad.ciudad}
+                        ${ciudad.ciudad}
                 `
                 if (ajustes.includes("iconoTemperatura")) {
                     htmlBuilder += `
                         <hr>
                         Temperatura:
                         <br>
-                        ${ciudad.temperaturas.split(";")[0]}ºC
-                        <br><br>
-                        Sensación termica:
-                        <br>
-                        ${ciudad.temperaturas.split(";")[1]}ºC
+                        ${ciudad.temperaturas}ºC
                     `
                 }
                 if (ajustes.includes("iconoViento")) {
@@ -81,9 +77,16 @@ function mostrarTiempoCiudad() {
                     `
                 }
 
+                htmlBuilder += `
+                    <hr>
+                    <p id="borrar" onclick="borrarCiudad('${ciudad.ciudad}')">Dejar de ver</p>
+                `
+
                 htmlBuilder += "</div>"
             }
         });
+    } else {
+        document.getElementById("tituloCiudades").innerHTML = "No se han encontrado ciudades"
     }
 
     document.getElementById("ciudades").innerHTML = htmlBuilder
@@ -101,4 +104,29 @@ function añadir(ciudad) {
 
     $("#tituloCiudades").text("Ciudades seleccionadas:")
     mostrarTiempoCiudad()
+}
+
+function borrarCiudad(ciudad) {
+    switch (true) {
+        case localStorage.getItem("ciudades").includes(ciudad + ";"):
+            localStorage.setItem("ciudades", localStorage.getItem("ciudades").replace(ciudad + ";", "")); break
+        case localStorage.getItem("ciudades").includes(";" + ciudad):
+            localStorage.setItem("ciudades", localStorage.getItem("ciudades").replace(";" + ciudad, "")); break
+        case localStorage.getItem("ciudades").includes(ciudad):
+            localStorage.removeItem("ciudades"); break
+    }
+    mostrarTiempoCiudad()
+}
+
+function selectCiudadesRellenar() {
+    fetch("http://10.10.17.145:8082/api/getCiudadesActuales")
+        .then((data) => { return data.json() })
+        .then((data) => {
+            console.log(data)
+            data.forEach((ciudad) => {
+                document.getElementById("selectCiudad").innerHTML += `
+                        <option value="${ciudad.ciudad}">${ciudad.ciudad}</option>
+                `
+            })
+        })
 }

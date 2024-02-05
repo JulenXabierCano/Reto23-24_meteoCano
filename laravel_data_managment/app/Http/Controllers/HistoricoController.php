@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Historico;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Ciudad;
 use DateTime;
-use Faker\Generator as Faker;
 
 class HistoricoController
 {
@@ -19,23 +17,16 @@ class HistoricoController
 
         $ciudades = Ciudad::all();
 
-        while ($fecha < $fechaFin) {
+        while ($fecha <= $fechaFin) {
             foreach ($ciudades as $ciudad) {
                 $temperatura = rand(-200, 3000) / 100;
-                $variacionTermica = 0;
 
                 $humedad = rand(0, 100);
-
-                if ($humedad > 50) {
-                    $variacionTermica = rand(0, 100) / 100;
-                } else {
-                    $variacionTermica = rand(0, -100) / 100;
-                }
 
                 Historico::create([
                     'ciudad' => $ciudad->ciudad,
                     'estadoDelCielo' => $estados[rand(0, 5)],
-                    'temperaturas' => $temperatura . ";" . ($temperatura + $variacionTermica),
+                    'temperaturas' => $temperatura,
                     'humedad' => $humedad,
                     'viento' => $ciudad->viento,
                     'lluvia' => $ciudad->lluvia,

@@ -1,13 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\RegisterController;
-
-use App\Http\Controllers\DataController;
+use Illuminate\Support\Facades\Log;
 
 use App\Models\Ciudad;
+use App\Models\Historico;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +26,14 @@ Route::get('getCiudades', function () {
     return json_decode(Ciudad::all());
 });
 
+Route::get('getCiudadesActuales', function () {
+    return json_decode(Ciudad::all("ciudad"));
+});
+
 Route::get('getCoordenadas', function () {
     return json_decode(Ciudad::all('ciudad', 'coordenadas'));
+});
+
+Route::get('getHistorico', function () {
+    return json_decode(Historico::whereBetween('fechaHistorico', explode(";", $_REQUEST["fechas"]))->where("ciudad", $_REQUEST["ciudad"])->get("temperaturas"));
 });
