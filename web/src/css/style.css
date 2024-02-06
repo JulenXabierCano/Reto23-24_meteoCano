@@ -14,6 +14,11 @@ h1 {
     margin: 15px;
 }
 
+nav * {
+    display: inline-block;
+    margin: 10px;
+}
+
 #mapcontainer {
     display: inline-block;
     text-align: center;
@@ -30,7 +35,12 @@ h1 {
 
 #ciudadesContainer {
     display: inline-block;
+    width: 630px;
     padding: 10px;
+}
+
+#ciudades {
+    height: 425px;
 }
 
 #ajustesAplicados,
@@ -52,9 +62,14 @@ h1 {
     display: inline-block;
 }
 
+#nombreCiudad {
+    padding-top: 15px 0px;
+}
+
 .ciudad {
     border: 1px solid black;
     display: inline-block;
+    border-radius: 10px;
     text-align: center;
     padding: 5px;
     width: 100px;
@@ -75,4 +90,8 @@ h1 {
 
 .icon {
     width: 25px;
+}
+
+.añadido{
+    filter: hue-rotate(27deg);
 }

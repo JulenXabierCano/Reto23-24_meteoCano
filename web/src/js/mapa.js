@@ -10,9 +10,12 @@ function crearMapa() {
             }).addTo(map)
 
             coordenadas.forEach(coordenada => {
-                L.marker(coordenada.coordenadas.split(";"))
+                marker = L.marker(coordenada.coordenadas.split(";"))
                     .addTo(map)
-                    .on("click", function () { añadir(coordenada.ciudad) })
+                    .on("click", function () {
+                        añadir(coordenada.ciudad)
+                        marker._icon.classList.add("añadido")
+                    })
             });
         })
 }

@@ -13,10 +13,24 @@ function obtenerCiudades() {
             console.log(data)
             ciudades = data
             mostrarTiempoCiudad()
+            cargarAjustes()
         })
 }
 
 function mostrarTiempoCiudad() {
+    const options = {
+        method: 'GET',
+        headers: {
+            Authorization: 'Bearer MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn7/2xnt6e0ki3J8AGVI5ootu+VbBnOhl2gqSS83VOZl4fYf+mPWbcD/yKjFgdTblbXGIWqlmwCvHaJ2Oo0hbAqR1D+Rlfv8/iskSdso/zdJF4WgpTLWGmkzuQV5PzvVPddxRNH0wtS6sk1m3Whm3jXVoo4Sfegis7vEvCG64URvWojR97AbLQxS6ptQ5zevxizhRBq+PeIko1LV8hT78o/nX+RNZPJJCo8l1VGxcklphjGMqVzlsh/nolLQjKhFny0aMRqZgfliIVMRmZlYJu395psJpXdIACzWNpgfoKYBU6F5KDjLztcDpj2ecLwO97Mg2qgTUi40uK5OPsdg0/wIDAQAB'
+        },
+        mode: 'cors', // Indica que se permiten solicitudes CORS
+        cache: 'no-cache', // No se almacena en caché la respuesta
+        credentials: 'same-origin', // Envía las credenciales (por ejemplo, cookies) si el origen es el mismo
+        redirect: 'follow', // Sigue las redirecciones del servidor
+        referrerPolicy: 'no-referrer' // No envía el Referer header
+    };
+
+    const divciudades = document.getElementById("ciudades")
     document.getElementById("ciudades").innerHTML = ''
     ajustes = ""
     if (localStorage.getItem("ajustes")) {
@@ -33,7 +47,7 @@ function mostrarTiempoCiudad() {
         ciudades.forEach(ciudad => {
             if (localStorage.getItem("ciudades").includes(ciudad.ciudad)) {
                 htmlBuilder += `<div class="ciudad">
-                        ${ciudad.ciudad}
+                        <p id="nombreCiudad"><b>${ciudad.ciudad}</b></p>
                 `
                 if (ajustes.includes("iconoTemperatura")) {
                     htmlBuilder += `
@@ -85,11 +99,12 @@ function mostrarTiempoCiudad() {
                 htmlBuilder += "</div>"
             }
         });
+        htmlBuilder += "<p>Ponga el raton encima de los nombres para ver la previsión de mañana</p>"
+        divciudades.innerHTML = htmlBuilder
     } else {
         document.getElementById("tituloCiudades").innerHTML = "No se han encontrado ciudades"
     }
 
-    document.getElementById("ciudades").innerHTML = htmlBuilder
 }
 
 function añadir(ciudad) {
