@@ -4,13 +4,7 @@ function crearGrafico(fechas, ciudad) {
     fetch(`http://10.10.17.145:8082/api/getHistorico?fechas=${fechas}&ciudad=${ciudad}`)
         .then((response) => { return response.json() })
         .then((data) => {
-
-            console.log(data)
-
             const temperaturasArray = data.map(item => parseFloat(item.temperaturas));
-
-            console.log(temperaturasArray);
-
             new Chart("grafico", {
                 type: "line",
                 data: {

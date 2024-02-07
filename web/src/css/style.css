@@ -22,9 +22,9 @@ nav * {
 #mapcontainer {
     display: inline-block;
     text-align: center;
+    width: 95%;
     max-width: 500px;
     margin: auto;
-    width: 95%;
 }
 
 #mapa {
@@ -35,12 +35,13 @@ nav * {
 
 #ciudadesContainer {
     display: inline-block;
-    width: 630px;
+    width: 95%;
+    max-width: 630px;
     padding: 10px;
 }
 
 #ciudades {
-    height: 425px;
+    min-height: 425px;
 }
 
 #ajustesAplicados,
@@ -49,11 +50,12 @@ nav * {
 }
 
 #grafico {
-    width: 500px;
+    width: 100%;
 }
 
 #contenedorGrafico {
     display: inline-block;
+    width: 95%;
     max-width: 500px;
     padding: 10px;
 }
@@ -63,7 +65,7 @@ nav * {
 }
 
 #nombreCiudad {
-    padding-top: 15px 0px;
+    height: 55px;
 }
 
 .ciudad {
@@ -92,6 +94,6 @@ nav * {
     width: 25px;
 }
 
-.añadido{
-    filter: hue-rotate(27deg);
+.añadido {
+    filter: hue-rotate(140deg);
 }
