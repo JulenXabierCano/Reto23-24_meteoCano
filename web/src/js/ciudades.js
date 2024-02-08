@@ -7,7 +7,7 @@ setInterval(() => {
 }, 15 * 1000);
 
 function obtenerCiudades() {
-    fetch("http://10.10.17.145:8082/api/getCiudades")
+    fetch(`http://${direccionIP}:8082/api/getCiudades`)
         .then((data) => { return data.json() })
         .then((data) => {
             ciudades = data
@@ -118,7 +118,7 @@ function borrarCiudad(ciudad) {
 }
 
 function selectCiudadesRellenar() {
-    fetch("http://10.10.17.145:8082/api/getCiudadesActuales")
+    fetch(`http://${direccionIP}:8082/api/getCiudadesActuales`)
         .then((data) => { return data.json() })
         .then((data) => {
             data.forEach((ciudad) => {

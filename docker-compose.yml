@@ -35,7 +35,6 @@ services:
       - DB_PASSWORD=password
       - DB_DATABASE=MeteoCano
       - USAR_WORKER=1
-    # command: [ "php", "artisan", "schedule:work" ]
     volumes:
       - './laravel_data_managment/:/var/www/html/'
 

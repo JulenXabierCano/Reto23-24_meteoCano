@@ -80,6 +80,6 @@ async function login(email, password) {
 }
 
 function saveConfig() {
-    fetch(`http://10.10.17.145:8082/api/saveConfig?user=${localStorage.getItem("token")}&ajusteCiudades=${localStorage.getItem("ciudades")}`)
+    fetch(`http://${direccionIP}:8082/api/saveConfig?user=${localStorage.getItem("token")}&ajusteCiudades=${localStorage.getItem("ciudades")}`)
         .then((response) => { if (response == "ok") alert("Se ha guardado la configuración correctamente"); else aler("Ha habido un fallo al guardar la configuracion") })
 }

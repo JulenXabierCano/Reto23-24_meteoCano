@@ -1,5 +1,5 @@
 function crearMapa() {
-    fetch("http://10.10.17.145:8082/api/getCoordenadas")
+    fetch(`http://${direccionIP}:8082/api/getCoordenadas`)
         .then((data) => { return data.json() })
         .then((coordenadas) => {
             /* Creamos el mapa y le indicamos la vista inicial */
